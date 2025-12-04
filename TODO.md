@@ -1,0 +1,3 @@
+- [x] Tambahkan method dashboard di UserController untuk menghitung jumlah pengguna
+- [x] Update route admin.dashboard untuk menggunakan controller method
+- [x] Update blade dashboard untuk menampilkan angka pengguna
