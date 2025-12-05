@@ -16,12 +16,14 @@ class PrecenseController extends Controller
     public function index()
     {
         $precenses = Precense::latest()->get();
-         return view('admin.precenses.index', compact('precenses'));
+        return view('admin.precenses.index', compact('precenses'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
+
+
     public function create()
     {
 
@@ -30,7 +32,7 @@ class PrecenseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-     public function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'date' => 'required|date',
@@ -83,7 +85,7 @@ class PrecenseController extends Controller
     }
 
 
-      public function exportExcel()
+    public function exportExcel()
     {
         $fileName = 'absensi.xlsx';
         return Excel::download(new PrecenseExport, $fileName);

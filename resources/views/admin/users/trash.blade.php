@@ -32,7 +32,6 @@
                     <td>{{ $user['position'] ?? '' }}</td>
                     <td>{{ $user['wages'] ?? '' }}</td>
                     <td>{{ $user['numberphone'] ?? '' }}</td>
-                    <td>{{ $user->created_at }}</td>
                     <td>{{ $user['email'] ?? '' }}</td>
                     <td class="text-center">
                         @if ($user['role'] == 'admin')

@@ -17,34 +17,35 @@
 
 
 
-    <div class="container-fluid">
-    <div class="row">
-        <!-- Sidebar -->
-        <div class="col-md-2 bg-light vh-100 p-3 overflow-hidden">
-            <h4 class="mb-4 text-center">Chaos</h4> <hr>
-            <div class="d-flex flex-column">
-                @if (Auth::check() && Auth::user()->role == 'admin')
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-secondary mb-2">Dashboard</a>
-                <a href="{{ route('admin.precenses.index') }}" class="btn btn-outline-secondary mb-2">Kehadiran</a>
-                <a href="{{ route('admin.users.index') }}" class="btn btn-outline-secondary mb-2">Pegawai</a>
-                <a href="{{ route('admin.users.create') }}" class="btn btn-outline-secondary mb-2">Tambah Pegawai</a>
-                <a href="{{ route('logout') }}" class="btn btn-outline-danger mb-2">Logout</a>
-                @elseif(Auth::check() && Auth::user()->role == 'staff')
-                <a href="{{ route('staff.dashboard') }}" class="btn btn-outline-secondary mb-2">Dashboard</a>
-                <a href="" class="btn btn-outline-secondary mb-2">Profil</a>
-                <a href="{{ route('logout') }}" class="btn btn-outline-danger mb-2">Logout</a>
-                @endif
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container">
+            <a class="navbar-brand text-light" href="#">Chaos Indonesia</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto gap-2">
+                    @if (Auth::check() && Auth::user()->role == 'admin')
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-light mb-2"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Dashboard</a>
+                        <a href="{{ route('admin.precenses.index') }}" class="btn btn-outline-light mb-2"><i class="fa-solid fa-briefcase" style="color: #ffffff;"></i> Kehadiran</a>
+                        <a href="{{ route('admin.users.index') }}" class="btn btn-outline-light mb-2"><i class="fa-solid fa-user" style="color: #ffffff;"></i> Pegawai</a>
+                        <a href="{{ route('admin.users.create') }}" class="btn btn-outline-light mb-2"><i class="fa-solid fa-plus" style="color: #ffffff;"></i> Tambah
+                            Pegawai</a>
+                        <a href="{{ route('logout') }}" class="btn btn-outline-danger mb-2"><i class="fa-solid fa-right-from-bracket" style="color: #ff0000;"></i> Logout</a>
+                    @elseif(Auth::check() && Auth::user()->role == 'staff')
+                        <a href="{{ route('staff.dashboard') }}" class="btn btn-outline-light mb-2"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Dashboard</a>
+                        <a href="{{ route('logout') }}" class="btn btn-outline-danger mb-2"><i class="fa-solid fa-right-from-bracket" style="color: #ff0000;"></i>  Logout</a>
+                     @endif
+                </div>
             </div>
         </div>
-        <!-- Main Content Area -->
-        <div class="col-md-10">
-            <!-- Konten utama bisa ditambahkan di sini -->
-            <div class="p-3">
-                @yield('content')
-            </div>
-        </div>
-    </div>
-</div>
+    </nav>
+
+
+                <div>
+                    @yield('content')
+                </div>
 
 
 
@@ -66,15 +67,15 @@
     </script>
 
 
-{{-- chart js --}}
+    {{-- chart js --}}
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
- @stack('script') {{-- konten dinamis javascript --}}
+    @stack('script') {{-- konten dinamis javascript --}}
 </body>
 
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Precense;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -251,9 +252,9 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        $totalUsers = User::count();
-        $histories = \App\Models\Precense::latest()->take(10)->get(['name', 'nik', 'position', 'date', 'status']);
-        return view('admin.dashboard', compact('totalUsers', 'histories'));
+        $berapausers = User::count();
+        $kehadiranusers = Precense::whereDate('date', now()->format('Y-m-d'))->latest()->get(['name', 'nik', 'position', 'date', 'status']);
+        return view('admin.dashboard', compact('berapausers', 'kehadiranusers'));
     }
 
 
@@ -274,6 +275,11 @@ class UserController extends Controller
                 return '<span class="badge bg-primary">staff</span>';
             }
         })
+
+         ->addColumn('wages', function($user) {
+            return 'Rp ' . number_format($user->wages, 0, ',', '.');
+        })
+
         ->addColumn('action', function($user){
             $btnEdit =  '<a href="' . route('admin.users.edit', $user->id) . '" class="btn btn-primary">Edit</a>';
             $btnDelete = ' <form action="' . route('admin.users.delete', $user->id) . '" method="POST" style="display: inline-block;">

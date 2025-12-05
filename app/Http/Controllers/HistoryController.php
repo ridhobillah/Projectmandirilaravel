@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\History;
-use App\Models\Precense;
+
 use Illuminate\Http\Request;
 
 class HistoryController extends Controller
@@ -13,8 +13,7 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        $precenses = Precense::latest()->get(['name', 'nik', 'position', 'date', 'status']);
-        return view('admin.dashboard', compact('precenses'));;
+        
     }
 
     /**
@@ -30,7 +29,7 @@ class HistoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -38,7 +37,7 @@ class HistoryController extends Controller
      */
     public function show(History $history)
     {
-        //
+
     }
 
     /**

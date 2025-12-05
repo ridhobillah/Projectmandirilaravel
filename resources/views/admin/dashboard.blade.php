@@ -10,28 +10,27 @@
         </div>
     @endif
 
-
-    <div class="d-flex justify-content-between container align-items-center">
+<div class="container">
+     <div style="display: flex; justify-content: space-between; padding: 20px; align-items: center;">
         <h3>Dashboard Admin</h3>
-        <div class="card bg-primary">
-            <div class="card-body text-center">
-                <h4 class="text-white">Total Pegawai</h4>
-                <h2 class="text-white">{{ $totalUsers }}</h2>
-            </div>
+        <div class="card p-3 text-center">
+            <h5>Total pegawai</h5>
+            <h2 class="text-danger">{{ $berapausers }}</h2>
         </div>
     </div>
+
     <hr>
+</div>
+    <div class="d-flex gap-3 align-items-center p-5">
+        <div class="card col-3 p-5">
+            <h5 class="text-center m-4">absensi bulan <span class="text-success">( {{ now()->format('F') }} )</span></h5>
+            <canvas id="chartPie"></canvas>
+        </div>
 
-<div class="d-flex gap-3 align-items-center">
-      <div class="card col-4 p-5">
-        <h5 class="text-center m-4">absensi bulan <span class="text-success">( {{ now()->format('F') }} )</span></h5>
-        <canvas id="chartPie"></canvas>
-    </div>
-
-    <div class="w-100 p-3 card">
-        <h5>Histori Absensi</h5>
+         <div class="card p-3 w-100">
+        <h4>absensi ( {{ now()->format('Y-m-d') }} )</h4>
         <hr>
-        <table class="table table-bordered table-striped">
+          <table class="table table-bordered table-striped">
             <thead class="table-secondary">
                 <tr class="text-center">
                     <th>No</th>
@@ -43,31 +42,28 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($histories as $index => $history)
-                <tr>
-                    <td class="text-center">{{ $index + 1 }}</td>
-                    <td>{{ $history->name }}</td>
-                    <td>{{ $history->nik }}</td>
-                    <td>{{ $history->position }}</td>
-                    <td>{{ $history->date }}</td>
-                     <td>
-                            @if ($history->status == 'Hadir')
+                @foreach ($kehadiranusers as $key => $kehadiranuser)
+                    <tr class="text-center">
+                        <td class="text-center">{{ $key + 1 }}</td>
+                        <td>{{ $kehadiranuser->name }}</td>
+                        <td>{{ $kehadiranuser->nik }}</td>
+                        <td>{{ $kehadiranuser->position }}</td>
+                        <td>{{ $kehadiranuser->date }}</td>
+                        <td>
+                            @if ($kehadiranuser->status == 'Hadir')
                                 <span class="badge bg-success">Hadir</span>
-                            @elseif ($history->status == 'Sakit')
+                            @elseif ($kehadiranuser->status == 'Sakit')
                                 <span class="badge bg-danger">Sakit</span>
-                            @elseif ($history->status == 'Izin')
+                            @elseif ($kehadiranuser->status == 'Izin')
                                 <span class="badge bg-warning text-white">Izin</span>
                             @endif
                         </td>
-                </tr>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-</div>
-
-
-
+    </div>
 
 
 
@@ -120,7 +116,5 @@
             });
 
         }
-
-
     </script>
 @endpush

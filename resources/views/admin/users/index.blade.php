@@ -31,7 +31,6 @@
                     <th class="text-center">Position</th>
                     <th class="text-center">Gaji</th>
                     <th class="text-center">No Telephone</th>
-                    <th class="text-center">Awal masuk</th>
                     <th class="text-center">Email</th>
                     <th class="text-center">Role</th>
                     <th class="text-center">Aksi</th>
@@ -44,9 +43,9 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->nik }}</td>
                         <td>{{ $user->position }}</td>
-                        <td>{{ $user->wages }}</td>
+                        <td>{{ $user->wages}}</td>
                         <td>{{ $user->numberphone }}</td>
-                        <td>{{ $user->created_at }}</td>
+                        {{-- d m y --}}
                         <td>{{ $user->email }}</td>
                         <td>
                             @if ($user['role'] == 'admin')
@@ -107,10 +106,6 @@
                     {
                         data: 'numberphone',
                         name: 'numberphone',
-                    },
-                    {
-                        data: 'created_at',
-                        name: 'created_at',
                     },
                     {
                         data: 'email',
