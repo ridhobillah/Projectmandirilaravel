@@ -18,7 +18,6 @@
                 <th class="text-center">Position</th>
                 <th class="text-center">Gaji</th>
                 <th class="text-center">No Telephone</th>
-                <th class="text-center">Awal masuk</th>
                 <th class="text-center">Email</th>
                 <th class="text-center">Role</th>
                 <th class="text-center">Aksi</th>

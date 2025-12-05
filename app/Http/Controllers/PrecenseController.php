@@ -79,10 +79,38 @@ class PrecenseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Precense $precense)
-    {
-        //
-    }
+
+
+
+
+
+
+
+
+
+
+
+     public function destroy($id)
+        {
+            $deleteData = Precense::where('id', $id)->delete();
+
+            if ($deleteData) {
+                return redirect()->route('admin.precenses.index')->with('success', 'Berhasil menghapus data absensi!');
+            } else {
+                return redirect()->back() - with('failed', 'Gagal menghapus data absensi!');
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+        
 
 
     public function exportExcel()
@@ -96,20 +124,9 @@ class PrecenseController extends Controller
         $currentMonth = now()->month;
         $currentYear = now()->year;
 
-        $hadir = Precense::where('status', 'hadir')
-            ->whereMonth('date', $currentMonth)
-            ->whereYear('date', $currentYear)
-            ->count();
-
-        $sakit = Precense::where('status', 'sakit')
-            ->whereMonth('date', $currentMonth)
-            ->whereYear('date', $currentYear)
-            ->count();
-
-        $izin = Precense::where('status', 'izin')
-            ->whereMonth('date', $currentMonth)
-            ->whereYear('date', $currentYear)
-            ->count();
+        $hadir = Precense::where('status', 'hadir')->whereMonth('date', $currentMonth)->whereYear('date', $currentYear)->count();
+        $sakit = Precense::where('status', 'sakit')->whereMonth('date', $currentMonth)->whereYear('date', $currentYear)->count();
+        $izin = Precense::where('status', 'izin')->whereMonth('date', $currentMonth)->whereYear('date', $currentYear)->count();
 
         return response()->json([
             'data' => [$hadir, $sakit, $izin]

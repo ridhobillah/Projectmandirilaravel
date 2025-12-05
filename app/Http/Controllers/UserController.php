@@ -198,16 +198,16 @@ class UserController extends Controller
 
 
 
-    public function destroy($id)
-    {
-        $deleteData = User::where('id', $id)->delete();
+        public function destroy($id)
+        {
+            $deleteData = User::where('id', $id)->delete();
 
-        if ($deleteData) {
-            return redirect()->route('admin.users.index')->with('success', 'Berhasil menghapus data pengguna!');
-        } else {
-            return redirect()->back() - with('failed', 'Gagal menghapus data pengguna!');
+            if ($deleteData) {
+                return redirect()->route('admin.users.index')->with('success', 'Berhasil menghapus data pengguna!');
+            } else {
+                return redirect()->back() - with('failed', 'Gagal menghapus data pengguna!');
+            }
         }
-    }
 
 
 

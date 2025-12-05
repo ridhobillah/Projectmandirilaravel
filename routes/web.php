@@ -29,11 +29,12 @@ Route::middleware('isAdmin')->prefix('admin')->name('admin.')->group(function ()
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 
 
-    
+
 
     Route::prefix('/precenses')->name('precenses.')->group(function () {
         Route::get('/', [PrecenseController::class, 'index'])->name('index');
         Route::get('/export', [PrecenseController::class, 'exportExcel'])->name('export');
+        Route::delete('/destroy/{id}', action: [PrecenseController::class, 'destroy'])->name('delete');
     });
 
 

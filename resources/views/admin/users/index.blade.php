@@ -59,7 +59,7 @@
                             <form action="{{ route('admin.users.delete', $user->id) }}" method="POST"
                                 style="display: inline-block;">
                                 <button type="submit" class="btn btn-danger me-2">Hapus</button>
-                            </form>'
+                            </form>
                         </td>
                     </tr>
                 @endforeach
@@ -75,50 +75,18 @@
         $(function() {
             $('#usersTable').DataTable({
                 processing: true,
-                //data untuk datatable diproses secara serverside (controller)
                 serverSide: true,
                 //routing menuju fungsi yang memproses data untuk datatable
                 ajax: "{{ route('admin.users.datatables') }}",
-                //urutan column (td), pastikan urutan sesuai th
-                //data: 'nama' -> nama diambil dari rawColumn jika addColumn, atau field dari model fillable
-                columns: [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex',
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: 'name',
-                        name: 'name',
-                    },
-                    {
-                        data: 'nik',
-                        name: 'nik',
-                    },
-                    {
-                        data: 'position',
-                        name: 'position',
-                    },
-                    {
-                        data: 'wages',
-                        name: 'wages',
-                    },
-                    {
-                        data: 'numberphone',
-                        name: 'numberphone',
-                    },
-                    {
-                        data: 'email',
-                        name: 'email',
-                    },
-                    {
-                        data: 'role',
-                        name: 'role',
-                    },
-                    {
-                        data: 'action',
-                        name: 'action'
-                    },
+                columns: [{ data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                    { data: 'name', name: 'name',},
+                    { data: 'nik', name: 'nik',},
+                    { data: 'position', name: 'position',},
+                    { data: 'wages', name: 'wages',},
+                    { data: 'numberphone', name: 'numberphone',},
+                    { data: 'email', name: 'email',},
+                    { data: 'role', name: 'role',},
+                    { data: 'action', name: 'action'},
                 ]
             });
         });

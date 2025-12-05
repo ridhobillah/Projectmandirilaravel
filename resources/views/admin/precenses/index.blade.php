@@ -1,13 +1,20 @@
 @extends('templates.app')
 
 @section('content')
+    @if (Session::get('success'))
+        <div class="alert alert-success alert-dismissible fade show alert-top-right" role="alert">
+            {{ Session::get('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div class="container mt-4">
-       <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center">
             <div>
                 <h3 class="my-3">Kehadiran pegawai</h3>
             </div>
             <div>
-                <a href="{{ route('admin.precenses.export') }}" class="btn btn-white me-2 text-success"><i class="fa-solid fa-file-excel fa-xl" style="color: #00b336;"></i> Export (.xlsx)</a>
+                <a href="{{ route('admin.precenses.export') }}" class="btn btn-white me-2 text-success"><i
+                        class="fa-solid fa-file-excel fa-xl" style="color: #00b336;"></i> Export (.xlsx)</a>
             </div>
         </div>
         <hr>
@@ -22,6 +29,7 @@
                     <th>Tanggal</th>
                     <th>Status</th>
                     <th>Keterangan</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,6 +50,12 @@
                             @endif
                         </td>
                         <td>{{ $row->reason }}</td>
+                        <td>
+                             <form action="{{ route('admin.precenses.delete', $row->id) }}" method="POST"
+                                style="display: inline-block;">
+                                <button type="submit" class="btn btn-danger me-2">Hapus</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
